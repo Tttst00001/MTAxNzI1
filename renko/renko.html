@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<!-- 公共交通
+铝
+农用机械 -->
+<script type="text/javascript" src="../collection.json"></script>
+<style>
+*{margin: 0; padding: 0;}
+#wrapper{ position: relative;}
+.box{ width: 10px; height: 10px;}
+.red{background-color: red;}
+.green{background-color: green;}
+.oblong{width: 10px;}
+</style>
+</head>
+<body>
+<div id="wrapper">
+  <!-- <div class="box red"></div> -->
+</div>
+</body>
+<script>
+  let left = 0;
+  let topp  = 500;
+  let high = 0
+  let arr = [];
+  for (let i = 0; i < data.length; i++) {
+    const element = data[i];
+    console.log(element.vol)
+    let xxx;
+    switch (element.direction) {
+      case '下跌一格':
+        topp += 10
+        break;
+      case '下跌多格':
+        topp += 20
+        break;
+      case '上涨一格':
+        topp -= 10
+        break;
+      case '上涨多格':
+        topp -= 20
+        break;
+      default:
+        console.log('null')
+        break;
+    }
+    
+    let div = document.createElement("div")
+    let div2 = document.createElement("div")
+    div.className = 'box red'
+    div2.className = 'oblong red'
+    div.title = `${element.date} - ${element.cell_open} - ${element.cell_close}` 
+    if (element.direction == '下跌一格' || element.direction == '下跌多格') {
+      div.className = 'box green'
+      div2.className = 'oblong green'
+    }
+    div.style = `position: absolute; top: ${topp}px; left: ${left}px;`
+    div2.style = `position: absolute; top: 0; left: ${left}px; height: ${element.vol / 10000}px`
+    let tt = document.getElementById("wrapper")
+    tt.appendChild(div);
+    tt.appendChild(div2);
+    left += 10;
+  }
+  
+  
+  </script>
+  
+</html>
